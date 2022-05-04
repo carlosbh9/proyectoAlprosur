@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="form-registro col-6">
+      <h4>VENTAS</h4>
+      <label class="labels" for="supermercados">Cliente</label>
+      <input class="controls" type="list" list="supermercados" placeholder="nombre del cliente" [(ngModel)]="venta.cliente" />
+      <label class="labels" for="fecha">Fecha</label>
+      <input class="controls" type="date" id="fecha" [(ngModel)]="venta.fecha" />
+      <label class="labels" for="cantidad">Monto</label>
+      <input class="controls" type="number" id="cantidad" [(ngModel)]="venta.monto" />
+      <button class="button btn btn-success" (click)="onDatos()">Agregar Venta</button>
+    </div>
+    <div class="table-list col-6">
+      <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venta of ventas; index as i">
+            <th scope=""></th>
+            <td>{{ venta.cliente }}</td>
+            <td>{{ venta.fecha }}</td>
+            <td>{{ venta.monto }}</td>
+            <td>
+              <button class="btn btn-warning" (click)="onEdit(i)">
+                <img src="../assets/pencil-square.svg" alt="" />
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="onDelete(i)">
+                <img src="../assets/trash.svg" alt="" />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

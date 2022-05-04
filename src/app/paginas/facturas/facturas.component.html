@@ -1,0 +1,85 @@
+<section>
+    <div class="row">
+      <div class="form-registro col-6">
+        <h4>Agregar una Factura</h4>
+        <label class="labels" for="codigo">Codigo</label>
+        <input class="controls" type="number" id="codigo" placeholder="codigo de Factura"[(ngModel)]="factura.codigo"/>
+        <label class="labels" for="DNI">DNI del Cliente</label>
+        <input class="controls" type="text" id="DNI" placeholder=" Ingrese el DNI" [(ngModel)]="factura.DNI"/> 
+        <label class="labels" for="supermercado">Supermercado</label>
+        <input class="controls" type="list" list="supermercado" placeholder="Selecciona un Supermercado" [(ngModel)]="factura.supermercado" />
+        <datalist id="supermercado">
+        <option value="La Canasta"></option>
+        <option value="Natura"></option>
+        <option value="Orión"></option>
+        <option value="Plaza Vea"></option>
+        <option value="Tottus"></option>
+        <option value="Wong"></option>
+        </datalist>
+        <label class="labels" for="formaPay"> Forma de Pago</label>
+        <input class="controls" type="list" list="formaPay" placeholder=" seleccione la forma de pago" [(ngModel)]="factura.formaPay"/>
+        <datalist id="formaPay">
+        <option value="En Efectivo"></option>
+        <option value="Devito"></option>
+        </datalist>
+        <label class="labels" for="fecha">Fecha </label>
+        <input class="controls" type="date" id="fecha" [(ngModel)]="factura.fecha"/>
+        <label class="labels" for="descripcion">Descripciòn</label>
+        <input class="controls" type="list" list="descripcion" placeholder=" descripcion de factura" [(ngModel)]="factura.descripcion"/>
+        <datalist id="descripcion">
+        <option value="Té verde x25"></option>
+        <option value="Té verde x50"></option>
+        <option value="Té verde agranel 250gr"></option>
+        <option value="Té verde con stevia x25"></option>
+        <option value="Té negro x25"></option>
+        <option value="Té negro x50"></option>
+        <option value="Té achiote x25"></option>
+        <option value="Té digestivo x25"></option>
+        <option value="Té con menta x25"></option>
+        <option value="Chia 500gr"></option>
+        </datalist>
+        <label class="labels" for="importe">Importe</label>
+        <input class="controls" type="text" id="importe" placeholder=" importe en soles" [(ngModel)]="factura.importe"/>
+        <button class="button" (click)="onDatos()">Realizar Factura</button>
+      </div>
+      <div class="table-list col-6">
+        <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">CODIGO</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Supermercado</th>
+              <th scope="col">FORMA DE PAGO</th>
+              <th scope="col">DESCRIPCION</th>
+              <th scope="col">FECHA</th>
+              <th scope="col">IMPORTE</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let factura of facturas; index as i">
+              <th>{{ factura.codigo}}</th>
+              <td>{{ factura.DNI }}</td>
+              <td>{{ factura.supermercado }}</td>
+              <td>{{ factura.formaPay }}</td>
+              <td>{{ factura.descripcion }}</td>
+              <td>{{ factura.fecha }}</td>
+              <td>{{ factura.importe }}</td>
+    
+              <td>
+                <button class="btn btn-warning" (click)="onEdit(i)">
+                  <img src="../assets/pencil-square.svg" alt="" />
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="onDelete(i)">
+                  <img src="../assets/trash.svg" alt="" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>

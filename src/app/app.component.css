@@ -1,0 +1,45 @@
+.form-registro {
+    width: 100%;
+    background: #2f3e46;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-family: "calibri";
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
+
+.labels {
+    font-size: 20px;
+}
+
+.form-text {
+    color:whitesmoke;
+    font-size: 15px
+}
+
+.form-control {
+    background: #133606;
+    border: 2px solid green;
+    font-family: "calibri";
+    font-size: 18px;
+    color: white;
+    
+}
+
+.form-registro .button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #84ad8c;
+    color: white;
+}
+.table-list {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 7px 13px 37px #000;
+}
+.invi{
+    opacity: 0%;
+}

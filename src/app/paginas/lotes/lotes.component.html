@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-registro">
+                <h1 class = "txtcentro">Agregar un Lote de Productos</h1>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-3"><label class="labels">ID del Lote</label></div>
+                        <div class="col-9"><input type="text" disabled class="form-control" [(ngModel)] = "altLote.id"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-9"><div class="form-text">El ID del lote se genera automáticamente</div></div>
+                    </div>                    
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-3"><label class="labels">Cantidad</label></div>
+                        <div class="col-9"><input class = "form-control" type="text" [(ngModel)] = "altLote.cantidadDisponible"></div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-3"><label class="labels">Fecha de Vencimiento</label></div>
+                        <div class="col-9"><input class = "form-control" type="date" [(ngModel)] = "altLote.fechaVencimientoProducto"></div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-3"><label class = "labels">Producto</label></div>
+                        <div class="col-9"><input class = "form-control" type="text" [(ngModel)] = "prvacio.codigo"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-9"><div class="form-text">El código del producto va aquí</div></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6"><button type="submit" class="button" (click) = "onRegistrar()">Registrar Lote</button></div>
+                    <div class="col-6"><button type="submit" class="button" (click) = "onActualizar()">Actualizar Lote</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="table-list">
+                <table class="table table-success table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Fecha Venc.</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let Lote of listarLotes(); index as i">
+                        <th scope=""></th>
+                        <td>{{ Lote.id }}</td>
+                        <td>{{ Lote.cantidadDisponible }}</td>
+                        <td>{{ Lote.fechaVencimientoProducto }}</td>
+                        <td>{{ Lote.contieneProducto.nombre }}</td>
+                        <td><button class="btn btn-warning" (click) = "onModificarTabla(i)"><img src="../assets/pencil-square.svg" alt=""></button></td>
+                        <td><button class="btn btn-danger" (click) = "onBorrarTabla(i)"><img src="../assets/trash.svg" alt=""></button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>      
+    </div>
+</div>

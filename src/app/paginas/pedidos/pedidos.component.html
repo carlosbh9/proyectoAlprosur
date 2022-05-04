@@ -1,0 +1,71 @@
+<section>
+    <div class="row">
+      <div class="form-registro col-6">
+        <h4>PEDIDO</h4>
+        <label class="labels" for="supermercados">Supermercado</label>
+        <input class="controls" type="list" list="supermercados" placeholder="Selecciona un Supermercado" [(ngModel)]="pedido.supermercado" />
+        <datalist id="supermercados">
+          <option value="La Canasta"></option>
+          <option value="Natura"></option>
+          <option value="Orión"></option>
+          <option value="Plaza Vea"></option>
+          <option value="Tottus"></option>
+          <option value="Wong"></option>
+        </datalist>
+        <label class="labels" for="productos">Producto</label>
+        <input class="controls" type="list" list="productos" placeholder="Selecciona un Producto" [(ngModel)]="pedido.producto" />
+        <datalist id="productos">
+          <option value="Té verde x25"></option>
+          <option value="Té verde x50"></option>
+          <option value="Té verde agranel 250gr"></option>
+          <option value="Té verde con stevia x25"></option>
+          <option value="Té negro x25"></option>
+          <option value="Té negro x50"></option>
+          <option value="Té achiote x25"></option>
+          <option value="Té digestivo x25"></option>
+          <option value="Té con menta x25"></option>
+          <option value="Buenas noches x25"></option>
+          <option value="Chia 500gr"></option>
+        </datalist>
+        <label class="labels" for="cantidad">Cantidad</label>
+        <input class="controls" type="number" id="cantidad" [(ngModel)]="pedido.cantidad" />
+        <label class="labels" for="fecha">Fecha</label>
+        <input class="controls" type="date" id="fecha" [(ngModel)]="pedido.fecha" />
+        <button class="button btn btn-success" (click)="onDatos()">Agregar Pedido</button>
+      </div>
+      <div class="table-list col-6">
+        <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Supermercado</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of pedidos; index as i">
+              <th scope=""></th>
+              <td>{{ pedido.supermercado }}</td>
+              <td>{{ pedido.producto }}</td>
+              <td>{{ pedido.cantidad }}</td>
+              <td>{{ pedido.fecha }}</td>
+              <td>
+                <button class="btn btn-warning" (click)="onEdit(i)">
+                  <img src="../assets/pencil-square.svg" alt="" />
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="onDelete(i)">
+                  <img src="../assets/trash.svg" alt="" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>

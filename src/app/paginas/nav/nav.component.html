@@ -1,0 +1,56 @@
+<section>
+  <nav class="navbar navbar-light" style="background-color: #cad2c5">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="pedido" >
+        <img
+          src="../assets/box.svg"
+          alt=""
+          width="30"
+          height="24"
+          class="d-inline-block align-text-top"
+        />
+        Pedidos
+      </a>
+      <a class="navbar-brand" routerLink="factura" >
+        <img
+          src="../assets/card-checklist.svg"
+          alt=""
+          width="30"
+          height="24"
+          class="d-inline-block align-text-top"
+        />
+        Facturas
+      </a>
+      <a class="navbar-brand" routerLink="home" >
+        Menú
+      </a>
+      <a class="navbar-brand" routerLink="venta" >
+        <img
+          src="../assets/currency-dollar.svg"
+          alt=""
+          width="30"
+          height="24"
+          class="d-inline-block align-text-top"
+        />
+        Ventas
+      </a>
+      <div class="dropdown">
+        <button class="btn btn-secundary dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown">
+          <img
+          src="../assets/card-checklist.svg"
+          alt=""
+          width="30"
+          height="24"
+          class="d-inline-block align-text-top"
+        />
+          Almacen
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="producto">Productos</a>
+          <a class="dropdown-item" routerLink="lote">Lotes</a>
+          <a class="dropdown-item"routerLink="cliente">Clientes</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  </section>
