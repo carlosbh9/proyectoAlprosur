@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Venta } from './venta';
+import { VentasService } from 'src/app/Servicios/ventas.service';
+import { Venta ,Cliente} from 'src/app/Interfaces';
+import { ClientesService } from 'src/app/Servicios/clientes.service';
 
 @Component({
   selector: 'app-ventas',
@@ -8,48 +10,62 @@ import { Venta } from './venta';
 })
 export class VentasComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private svcVentas : VentasService,private svcClientes : ClientesService) { }
+  public ventas : Venta[]=[];
+  public clientes : Cliente[]=[];
   ngOnInit(): void {
-  }
+    this.svcVentas.getVentas().subscribe(res=>{
+      this.ventas=res})
+      console.log(this.ventas)
 
-  public venta: Venta = this.pedidoEmpty();
-  public ventas: Venta[] = [];
-  public position: number = -1;
+      this.svcClientes.getClientes().subscribe(res=>{
+        this.clientes=res})
+        console.log(this.ventas)
+
+
+  }
+  public cliente : Cliente =this.svcClientes.ClienteEmpty2() ;
+  public venta: Venta = this.svcVentas.ventaEmpty();
+  public id: number = 0;
 
   onDatos(): void {
-    if (this.position == -1) {
-      console.log(this.venta);
-      this.ventas.push(this.venta);
-      this.venta = this.pedidoEmpty();
-    } else {
-      let selection: Venta = this.ventas[this.position];
-      selection.cliente = this.venta.cliente;
-      selection.fecha = this.venta.fecha;
-      selection.monto = this.venta.monto;
-      this.venta = this.pedidoEmpty();
-      this.position = -1;
-    }
+    this.svcVentas.setVenta(this.venta).subscribe(data=>{
+      console.log(data)
+    });
+    console.log(this.venta)
   }
 
-  pedidoEmpty(): Venta {
-    return {
-      cliente: "",
-      fecha: "",
-      monto: 0
-    };
+  findByCliente(id: number):void{
+    this.svcClientes.findByCliente(id).subscribe(data => {
+      console.log(data);
+    })
   }
 
+  actualizarVenta(): void{
+ this.svcVentas.updateVenta(this.id,this.venta).subscribe(data =>{
+      console.log(data);
+    })
+  }
   onEdit(i: number): void {
+
+
+    this.svcVentas.findByVenta(i).subscribe(data=>{
+      this.venta=data;
+    });
+    this.id= i;
+
     //this.pedido = this.pedidos[i];
-    let selection: Venta = this.ventas[i];
-    this.venta.cliente = selection.cliente;
-    this.venta.fecha = selection.fecha;
-    this.position = i;
+    // let selection: Venta = this.ventas[i];
+    // this.venta.cliente = selection.cliente;
+    // this.venta.fecha = selection.fecha;
+    // this.position = i;
   }
-  
+
   onDelete(i: number): void {
-    this.ventas.splice(i, 1);
+    this.svcVentas.deleteVenta(i).subscribe(data =>{
+      console.log(data)
+    });
+    //this.ventas.splice(i, 1);
   }
 
 }

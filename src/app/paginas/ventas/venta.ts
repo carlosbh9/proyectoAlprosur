@@ -1,5 +1,8 @@
+
 export interface Venta {
-    cliente: string
-    fecha: string
-    monto: number
+  id:        number;
+  cliente:   string;
+  fecha:     Date;
+  monto:     number;
+  clienteId: number;
 }

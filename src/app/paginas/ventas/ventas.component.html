@@ -1,13 +1,25 @@
 <div class="row">
     <div class="form-registro col-6">
       <h4>VENTAS</h4>
-      <label class="labels" for="supermercados">Cliente</label>
+      <label class="labels" for="supermercados">Entidad</label>
       <input class="controls" type="list" list="supermercados" placeholder="nombre del cliente" [(ngModel)]="venta.cliente" />
       <label class="labels" for="fecha">Fecha</label>
       <input class="controls" type="date" id="fecha" [(ngModel)]="venta.fecha" />
       <label class="labels" for="cantidad">Monto</label>
       <input class="controls" type="number" id="cantidad" [(ngModel)]="venta.monto" />
+      <label class="labels" for="cantidad">Cliente Id NOMBRE</label>
+      <select class="controls" [(ngModel)]="venta.clienteId">
+        <option *ngFor="let cliente of clientes; index " [value]="cliente.id">{{cliente.nombre}}</option>
+      </select>
+
+      <!-- <datalist *ngFor="let cliente of clientes; index as i">
+        <tr>
+          <option value={{ cliente.nombre }}></option>
+        </tr>
+
+      </datalist> -->
       <button class="button btn btn-success" (click)="onDatos()">Agregar Venta</button>
+      <button class="button btn btn-success" (click)="actualizarVenta()">Actualizar venta</button>
     </div>
     <div class="table-list col-6">
       <table class="table table-success table-striped">
@@ -17,16 +29,18 @@
             <th scope="col">Cliente</th>
             <th scope="col">Fecha</th>
             <th scope="col">Monto</th>
+            <th scope="col">ClienteId</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let venta of ventas; index as i">
+          <tr *ngFor="let vent of ventas; index as i">
             <th scope=""></th>
-            <td>{{ venta.cliente }}</td>
-            <td>{{ venta.fecha }}</td>
-            <td>{{ venta.monto }}</td>
+            <td>{{ vent.cliente }}</td>
+            <td>{{ vent.fecha }}</td>
+            <td>{{ vent.monto }}</td>
+            <td>{{vent.clienteId}}</td>
             <td>
               <button class="btn btn-warning" (click)="onEdit(i)">
                 <img src="../assets/pencil-square.svg" alt="" />

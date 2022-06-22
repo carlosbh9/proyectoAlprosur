@@ -12,6 +12,10 @@ import { LotesComponent } from './paginas/lotes/lotes.component';
 import { ProductosComponent } from './paginas/productos/productos.component';
 import { ClientesComponent } from './paginas/clientes/clientes.component';
 
+import { TbclienteComponent } from './paginas/tablas/tbcliente/tbcliente.component';
+import { TbproductosComponent } from './paginas/tablas/tbproductos/tbproductos.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +25,16 @@ import { ClientesComponent } from './paginas/clientes/clientes.component';
     FacturasComponent,
     LotesComponent,
     ProductosComponent,
-   
-    ClientesComponent
+
+    ClientesComponent,
+
+        TbclienteComponent,
+        TbproductosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

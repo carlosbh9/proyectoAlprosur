@@ -1,58 +1,77 @@
 import { Component, OnInit } from '@angular/core';
-import {Cliente} from './cliente'
+import {Cliente} from 'src/app/Interfaces'
+import { ClientesService } from 'src/app/Servicios/clientes.service';
+
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
   styleUrls: ['./clientes.component.css'],
 })
 export class ClientesComponent implements OnInit {
-
-  constructor() { }
+  public clientes : Cliente [] = [] ;
+  constructor(
+    private svcClientes: ClientesService
+  ) {
+    // this.svcClientes.getClientes().subscribe(res =>{
+    //   console.log(res);
+    // })
+  }
 
   ngOnInit(): void {
-  }
-  public cliente: Cliente =this.ClienteEmpty(); 
-  public clientes: Cliente []= [];
-  public position: number = -1; 
 
-  
-  onDatos(): void {
-    if (this.position == -1) {
-      console.log(this.cliente);
-      this.clientes.push(this.cliente);
-      this.cliente = this.ClienteEmpty();
-    } else {
-      let selection: Cliente = this.clientes[this.position];
-      selection.idCliente = this.cliente.idCliente;
-      selection.nombre = this.cliente.nombre;
-      selection.telefono = this.cliente.telefono;
-      selection.email = this.cliente.email;
-      this.cliente = this.ClienteEmpty();
-      this.position = -1;
-    }
+  this.svcClientes.getClientes().subscribe(res=>{
+      this.clientes=res})
+      console.log(this.clientes)
+  }
+
+ public cliente: Cliente = this.svcClientes.ClienteEmpty2();
+  public id: number = 0;
+
+  // ListaCliente() :Cliente[] {
+  //   this.svcClientes.getClientes().subscribe(res=>{
+  //     this.clientes=res}
+  //     ,error => {
+  //       console.log(error)
+  //     });
+  //     return this.clientes;
+
+  // }
+
+
+  ingresarDatos(): void {
+    this.svcClientes.setCliente(this.cliente).subscribe(data=>{
+      console.log(data)
+    });
+
   }
 
   ClienteEmpty(): Cliente {
-    return{
-    idCliente: 0,
-    nombre: "",
-    telefono: "",
-    email: "",
-    };
+    return this.svcClientes.ClienteEmpty2()
+  }
+  ActualizarCliente(): void{
+  this.svcClientes.update(this.id,this.cliente).subscribe(data =>{
+      console.log(data)
+    })
+
+  }
+  editar(i: number): void {
+    this.svcClientes.findByCliente(i).subscribe(data =>{
+      this.cliente=data
+    })
+    this.id=i;
+
+    //this.cliente = this.clientes[i];
+    //this.svcClientes.onEdit2(i)
+    console.log(this.clientes+"id : "+i)
+    //this.position = i;
   }
 
-  onEdit(i: number): void {
-    //this.pedido = this.pedidos[i];
-    let selection: Cliente = this.clientes[i];
-    this.cliente.idCliente = selection.idCliente;
-    this.cliente.nombre = selection.nombre;
-    this.cliente.telefono = selection.telefono;
-    this.cliente.email = selection.email;
-    this.position = i;
-  }
-
-  onDelete(i: number): void{
-    this.clientes.splice(i, 1);
+  EliminarCliente(i: number): void{
+    this.svcClientes.delete(i).subscribe(data =>{
+      console.log(data)
+    });
+    // this.svcClientes.onDelete2(i)
+    // this.position = -1
   }
 
 }

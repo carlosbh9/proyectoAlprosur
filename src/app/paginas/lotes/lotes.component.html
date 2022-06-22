@@ -28,11 +28,16 @@
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-3"><label class = "labels">Producto</label></div>
-                        <div class="col-9"><input class = "form-control" type="text" [(ngModel)] = "prvacio.codigo"></div>
+                        <div class="col-9">
+                            <input class="form-control" type="list" list="productos" placeholder="Selecciona un Producto" [(ngModel)]="prvacio.nombre" />
+                            <datalist id="productos">
+                                <app-tbproductos *ngFor = "let Producto of ListaProductos()" [ProductoInput] = "Producto"></app-tbproductos>
+                            </datalist>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-3"></div>
-                        <div class="col-9"><div class="form-text">El código del producto va aquí</div></div>
+                        <div class="col-9"><div class="form-text">El nombre del producto va aquí</div></div>
                     </div>
                 </div>
                 <div class="row">
@@ -46,7 +51,6 @@
                 <table class="table table-success table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">ID</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Fecha Venc.</th>
@@ -57,7 +61,6 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let Lote of listarLotes(); index as i">
-                        <th scope=""></th>
                         <td>{{ Lote.id }}</td>
                         <td>{{ Lote.cantidadDisponible }}</td>
                         <td>{{ Lote.fechaVencimientoProducto }}</td>

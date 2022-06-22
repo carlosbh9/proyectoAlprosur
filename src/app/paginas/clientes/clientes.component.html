@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
 <div class="form-registro col-6">
     <h1>Clientes</h1>
     <label class="labels">codCliente</label>
@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let factura of clientes; index as i">
+          <tr *ngFor="let factura of Listaclientes(); index as i">
             <th>{{ cliente.idCliente }}</th>
             <td>{{ cliente.nombre }}</td>
             <td>{{ cliente.telefono }}</td>
@@ -43,5 +43,113 @@
         </tbody>
       </table>
 
-  </div>  
+  </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <div class="form-registro">
+        <h1>Clientes</h1>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">ID</label></div>
+            <div class="col-9"><input class="form-control"  type="text" [(ngModel)]="cliente.id"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">RUC</label></div>
+            <div class="col-9"><input class="form-control" type="text" [(ngModel)]="cliente.ruc"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">DNI</label></div>
+            <div class="col-9"><input class="form-control" type="text" [(ngModel)]="cliente.dni"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">Nombres</label></div>
+            <div class="col-9"><input class="form-control" type="text" [(ngModel)]="cliente.nombre"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">Apellido Paterno</label></div>
+            <div class="col-9"><input class="form-control" type="text" [(ngModel)]="cliente.aPaterno"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">Apellido Materno</label></div>
+            <div class="col-9"><input class="form-control" type="text" [(ngModel)]="cliente.aMaterno"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">Teléfono</label></div>
+            <div class="col-9"><input class="form-control" type="text" [(ngModel)]="cliente.telefono"></div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-3"><label class="labels">Correo</label></div>
+            <div class="col-9"><input class="form-control" type="email" [(ngModel)]="cliente.correo"></div>
+          </div>
+        </div>
+        <button class="button" (click)="ingresarDatos()">Ingresar Cliente</button>
+        <button class="button" (click)="ActualizarCliente()">Actualizar Cliente</button>
+     </div>
+    </div>
+    <div class="col-6">
+      <div class="table-list">
+        <table class="table table-success table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">RUC</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Pedidos (Cantidad)</th>
+                <th scope="col">Facturas (Cantidad)</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let clien of clientes ; index as i" >
+                <th>{{ clien.id }}</th>
+                <td>{{ clien.ruc }}</td>
+                <td>{{ clien.dni }}</td>
+                <td>{{ clien.nombre }}</td>
+                <th>{{ clien.aPaterno }}</th>
+                <td>{{ clien.aMaterno }}</td>
+                <td>{{ clien.telefono }}</td>
+                <td>{{ clien.correo }}</td>
+                <!-- <th>{{ cliente.tienePedidos.length }}</th>
+                <td>{{ cliente.tieneFacturas.length }}</td> -->
+                <td>
+                  <button class="btn btn-warning" (click)="editar( clien.id )">
+                    <img src="../assets/pencil-square.svg" alt="" />
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-danger" (click)="EliminarCliente( clien.id )">
+                    <img src="../assets/trash.svg" alt="" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
 </div>
