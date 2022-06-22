@@ -84,7 +84,14 @@ export interface Factura2 {
 }
 
 export interface Venta {
+  id : number
+  cliente:   string;
+  fecha:     Date;
+  monto:     number;
+  clienteId: number;
+}
 
+export interface ventaAux{
   cliente:   string;
   fecha:     Date;
   monto:     number;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VentasService } from 'src/app/Servicios/ventas.service';
-import { Venta ,Cliente} from 'src/app/Interfaces';
+import { Venta ,Cliente, ventaAux} from 'src/app/Interfaces';
 import { ClientesService } from 'src/app/Servicios/clientes.service';
 
 @Component({
@@ -26,13 +26,20 @@ export class VentasComponent implements OnInit {
   }
   public cliente : Cliente =this.svcClientes.ClienteEmpty2() ;
   public venta: Venta = this.svcVentas.ventaEmpty();
+  public ventaAux : ventaAux = this.svcVentas.ventaEmptyAux();
   public id: number = 0;
 
   onDatos(): void {
-    this.svcVentas.setVenta(this.venta).subscribe(data=>{
+    let aux :ventaAux= {
+      cliente :this.venta.cliente,
+      fecha: this.venta.fecha,
+      monto: this.venta.monto,
+      clienteId: this.venta.clienteId
+    }
+    this.svcVentas.setVenta(aux).subscribe(data=>{
       console.log(data)
     });
-    console.log(this.venta)
+    console.log(aux)
   }
 
   findByCliente(id: number):void{
@@ -42,7 +49,13 @@ export class VentasComponent implements OnInit {
   }
 
   actualizarVenta(): void{
- this.svcVentas.updateVenta(this.id,this.venta).subscribe(data =>{
+    let aux :ventaAux= {
+      cliente :this.venta.cliente,
+      fecha: this.venta.fecha,
+      monto: this.venta.monto,
+      clienteId: this.venta.clienteId
+    }
+ this.svcVentas.updateVenta(this.id,aux).subscribe(data =>{
       console.log(data);
     })
   }
@@ -51,7 +64,9 @@ export class VentasComponent implements OnInit {
 
     this.svcVentas.findByVenta(i).subscribe(data=>{
       this.venta=data;
+      console.log(this.venta)
     });
+
     this.id= i;
 
     //this.pedido = this.pedidos[i];

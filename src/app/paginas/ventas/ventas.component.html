@@ -35,19 +35,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let vent of ventas; index as i">
+          <tr *ngFor="let venta of ventas; index as i">
             <th scope=""></th>
-            <td>{{ vent.cliente }}</td>
-            <td>{{ vent.fecha }}</td>
-            <td>{{ vent.monto }}</td>
-            <td>{{vent.clienteId}}</td>
+            <td>{{ venta.cliente }}</td>
+            <td>{{ venta.fecha }}</td>
+            <td>{{ venta.monto }}</td>
+            <td>{{venta.clienteId}}</td>
             <td>
-              <button class="btn btn-warning" (click)="onEdit(i)">
+              <button class="btn btn-warning" (click)="onEdit(venta.id)">
                 <img src="../assets/pencil-square.svg" alt="" />
               </button>
             </td>
             <td>
-              <button class="btn btn-danger" (click)="onDelete(i)">
+              <button class="btn btn-danger" (click)="onDelete(venta.id)">
                 <img src="../assets/trash.svg" alt="" />
               </button>
             </td>
